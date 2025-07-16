@@ -13,6 +13,7 @@ const routes: Routes = [
   {
     path: "login",
     loadComponent: () => import("./core/auth/auth.component"),
+    data: { authType: "login" },
     canActivate: [
       () => inject(UserService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
     ],
@@ -20,10 +21,12 @@ const routes: Routes = [
   {
     path: "register",
     loadComponent: () => import("./core/auth/auth.component"),
+    data: { authType: "register" },
     canActivate: [
       () => inject(UserService).isAuthenticated.pipe(map((isAuth) => !isAuth)),
     ],
   },
+
   {
     path: "settings",
     loadComponent: () => import("./features/settings/settings.component"),
